@@ -61,7 +61,7 @@ class ModelNetTrainer(object):
                 out_data = self.model(in_data)
 
                 loss = self.loss_fn(out_data, target)
-                
+
                 self.writer.add_scalar('train/train_loss', loss, i_acc+i+1)
 
                 pred = torch.max(out_data, 1)[1]
@@ -73,7 +73,7 @@ class ModelNetTrainer(object):
 
                 loss.backward()
                 self.optimizer.step()
-                
+
                 log_str = 'epoch %d, step %d: train_loss %.3f; train_acc %.3f' % (epoch+1, i+1, loss, acc)
                 if (i+1)%1==0:
                     print(log_str)
@@ -91,7 +91,7 @@ class ModelNetTrainer(object):
             if val_overall_acc > best_acc:
                 best_acc = val_overall_acc
                 self.model.save(self.log_dir, epoch)
- 
+
             # adjust learning rate manually
             if epoch > 0 and (epoch+1) % 10 == 0:
                 for param_group in self.optimizer.param_groups:
@@ -158,4 +158,3 @@ class ModelNetTrainer(object):
         self.model.train()
 
         return loss, val_overall_acc, val_mean_class_acc
-
