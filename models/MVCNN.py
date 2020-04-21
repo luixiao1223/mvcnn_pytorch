@@ -24,6 +24,7 @@ class SVCNN(Model):
     def __init__(self, name, nclasses=40, pretraining=True, cnn_name='vgg11'):
         super(SVCNN, self).__init__(name)
 
+        # 40 labels
         self.classnames=['airplane','bathtub','bed','bench','bookshelf','bottle','bowl','car','chair',
                          'cone','cup','curtain','desk','door','dresser','flower_pot','glass_box',
                          'guitar','keyboard','lamp','laptop','mantel','monitor','night_stand',
